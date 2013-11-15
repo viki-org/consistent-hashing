@@ -87,7 +87,7 @@ module ConsistentHashing
     #
     # Returns: a String
     def hash_key(key, index = nil)
-      key = "#{key}:#{index}" if index
+      key = "#{key}|#{index}" if index
       Zlib.crc32(key)
     end
   end
