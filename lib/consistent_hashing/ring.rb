@@ -1,4 +1,4 @@
-require 'digest/md5'
+require 'zlib'
 require 'set'
 
 module ConsistentHashing
@@ -88,7 +88,7 @@ module ConsistentHashing
     # Returns: a String
     def hash_key(key, index = nil)
       key = "#{key}:#{index}" if index
-      Digest::MD5.hexdigest(key.to_s)[0..16].hex
+      Zlib.crc32(key)
     end
   end
 end
